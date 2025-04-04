@@ -1,0 +1,115 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.spinner {
+  position: relative;
+  animation: rotate 2s linear infinite;
+}
+
+.small {
+  width: 30px;
+  height: 30px;
+}
+
+.medium {
+  width: 50px;
+  height: 50px;
+}
+
+.large {
+  width: 80px;
+  height: 80px;
+}
+
+.primary .dot {
+  background-color: #ff9800;
+}
+
+.secondary .dot {
+  background-color: #4caf50;
+}
+
+.white .dot {
+  background-color: #ffffff;
+}
+
+.dot {
+  position: absolute;
+  width: 30%;
+  height: 30%;
+  border-radius: 50%;
+  transform-origin: center;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.dot:nth-child(1) {
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  animation-delay: 0s;
+}
+
+.dot:nth-child(2) {
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  animation-delay: 0.375s;
+}
+
+.dot:nth-child(3) {
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  animation-delay: 0.75s;
+}
+
+.dot:nth-child(4) {
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  animation-delay: 1.125s;
+}
+
+.text {
+  margin-top: 1.5rem;
+  font-size: 1rem;
+  color: #666;
+  text-align: center;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 0.6;
+    transform: scale(0.8) translateX(-50%);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1) translateX(-50%);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+

@@ -1,0 +1,42 @@
+{
+  "name": "vol2",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "lint": "eslint .",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@types/css-modules": "^1.0.5",
+    "css-modules": "^0.3.0",
+    "lucide-react": "^0.486.0",
+    "react": "^19.0.0",
+    "react-aria-components": "^1.7.1",
+    "react-dom": "^19.0.0",
+    "react-router": "^7.4.1",
+    "react-router-dom": "^7.4.1",
+    "@hookform/resolvers": "^3.3.4",
+    "react-hook-form": "^7.51.3",
+    "zod": "^3.23.6"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.21.0",
+    "@types/react": "^19.0.10",
+    "@types/react-dom": "^19.0.4",
+    "@vitejs/plugin-react-swc": "^3.8.0",
+    "eslint": "^9.21.0",
+    "eslint-plugin-react-hooks": "^5.1.0",
+    "eslint-plugin-react-refresh": "^0.4.19",
+    "globals": "^15.15.0",
+    "typescript": "~5.7.2",
+    "typescript-eslint": "^8.24.1",
+    "vite": "^6.2.0"
+  },
+  "sideEffects": [
+    "*.css"
+  ],
+  "packageManager": "pnpm@10.6.5+sha512.cdf928fca20832cd59ec53826492b7dc25dc524d4370b6b4adbf65803d32efaa6c1c88147c0ae4e8d579a6c9eec715757b50d4fa35eea179d868eada4ed043af"
+}

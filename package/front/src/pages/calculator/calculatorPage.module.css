@@ -1,0 +1,199 @@
+.uploadContainer {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.uploadCard {
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  padding: 2rem;
+}
+
+.uploadArea {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.fileInput {
+  display: none;
+}
+
+.uploadLabel {
+  width: 100%;
+  padding: 3rem 2rem;
+  border: 2px dashed #ddd;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.uploadLabel:hover {
+  border-color: #ff9800;
+  background-color: #fff8e1;
+}
+
+.uploadIcon {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: #fff3e0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  color: #ff9800;
+}
+
+.uploadLabel h3 {
+  font-size: 1.3rem;
+  margin-bottom: 0.75rem;
+  color: #333;
+}
+
+.uploadLabel p {
+  color: #666;
+}
+
+.previewContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.imagePreview {
+  max-width: 100%;
+  max-height: 400px;
+  border-radius: 12px;
+  object-fit: contain;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.analyzeButton {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.analyzeButton:hover {
+  background-color: #388e3c;
+  transform: translateY(-2px);
+}
+
+.analyzing {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  color: #666;
+}
+
+.spinner {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.resultsContainer {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.resultsSummary {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.imageThumb {
+  width: 100px;
+  height: 100px;
+  border-radius: 8px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.imageThumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.summaryText {
+  flex: 1;
+}
+
+.summaryText h3 {
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.summaryText p {
+  color: #666;
+  line-height: 1.5;
+}
+
+.nutritionResults {
+  margin-bottom: 2rem;
+}
+
+.resetButton {
+  display: block;
+  margin: 0 auto;
+  padding: 0.75rem 1.5rem;
+  background-color: #ff9800;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.resetButton:hover {
+  background-color: #f57c00;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .resultsSummary {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .imageThumb {
+    width: 150px;
+    height: 150px;
+  }
+}
+
