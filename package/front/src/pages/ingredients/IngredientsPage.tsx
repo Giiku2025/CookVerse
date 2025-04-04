@@ -3,9 +3,17 @@ import SearchBar from "../../components/search/SearchBar/SearchBar"
 import styles from "./ingredientsPage.module.css"
 
 function IngredientsPage() {
-  const handleSearch = (query: string, siteId: string) => {
-    console.log(`食材: ${query}, サイト: ${siteId}`)
-    // ここに検索ロジックを実装
+  const handleSearch = (encodedQuery: string, siteId: string) => {
+    // Base64デコードして元の検索クエリを取得
+    try {
+      const decodedQuery = decodeURIComponent(atob(encodedQuery))
+      console.log(`食材: ${decodedQuery}, サイト: ${siteId}`)
+
+      // ここで検索処理を実装
+      // 例: APIリクエストを送信するなど
+    } catch (error) {
+      console.error("検索クエリのデコードに失敗しました:", error)
+    }
   }
 
   return (

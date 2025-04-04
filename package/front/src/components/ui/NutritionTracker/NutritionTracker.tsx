@@ -1,10 +1,14 @@
 import styles from "./nutritionTracker.module.css"
 
-interface NutritionTrackerProps {
-  colorScheme?: "greenToOrange" | "whiteToGreen"
-}
+// interface NutritionTrackerProps {
+//   colorScheme?: "greenToOrange" | "whiteToGreen"
+// }
 
-function NutritionTracker({ colorScheme }: NutritionTrackerProps) {
+function NutritionTracker(
+
+  // { colorScheme }: NutritionTrackerProps
+
+) {
   // 栄養素ごとに適切なプログレスバーのクラスを返す関数
   const getProgressBarClass = (nutrientType: string) => {
     // たんぱく質と食物繊維には白から緑のパターンを適用
