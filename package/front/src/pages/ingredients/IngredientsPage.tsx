@@ -1,43 +1,103 @@
-import SearchForm from "../../components/search/SearchForm/SearchForm"
-import SearchBar from "../../components/search/SearchBar/SearchBar"
-import styles from "./ingredientsPage.module.css"
+import type React from "react"
+import { useState } from "react"
+import { Upload, Check, Loader2 } from "lucide-react"
+import styles from "../calculator/calculatorPage.module.css"
 
 function IngredientsPage() {
-  const handleSearch = (encodedQuery: string, siteId: string) => {
-    // Base64デコードして元の検索クエリを取得
-    try {
-      const decodedQuery = decodeURIComponent(atob(encodedQuery))
-      console.log(`食材: ${decodedQuery}, サイト: ${siteId}`)
+  const [file, setFile] = useState<File | null>(null)
+  const [preview, setPreview] = useState<string | null>(null)
+  const [isAnalyzing, setIsAnalyzing] = useState(false)
+  const [analysisComplete, setAnalysisComplete] = useState(false)
 
-      // ここで検索処理を実装
-      // 例: APIリクエストを送信するなど
-    } catch (error) {
-      console.error("検索クエリのデコードに失敗しました:", error)
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      const selectedFile = e.target.files[0]
+      setFile(selectedFile)
+
+      const reader = new FileReader()
+      reader.onload = (event) => {
+        if (event.target?.result) {
+          setPreview(event.target.result as string)
+        }
+      }
+      reader.readAsDataURL(selectedFile)
+
+      // Reset analysis states
+      setAnalysisComplete(false)
     }
   }
 
+  const analyzeImage = () => {
+    if (!file) return
+
+    setIsAnalyzing(true)
+
+    // Simulate AI analysis with a timeout
+    setTimeout(() => {
+      setIsAnalyzing(false)
+      setAnalysisComplete(true)
+    }, 2000)
+  }
+
   return (
-    <div>
-      <h1 className="page-title">具材からレシピを検索</h1>
-      <p className="page-subtitle">冷蔵庫の食材でできるレシピを見つけましょう</p>
+      <div>
+        <h1 className="page-title">具材から料理を検索</h1>
+        <p className="page-subtitle">具材の写真をアップロードして料理を検索</p>
 
-      <SearchForm>
-        <p className={styles.searchInfo}>
-          食材の名前を入力してチップにすると
-          <br />
-          その食材で作れるレシピが検索できます
-        </p>
+        {!analysisComplete ? (
+            <div className={styles.uploadContainer}>
+              <div className={styles.uploadCard}>
+                <div className={styles.uploadArea}>
+                  <input
+                      type="file"
+                      id="food-image"
+                      accept="image/*"
+                      onChange={handleFileChange}
+                      className={styles.fileInput}
+                  />
 
-        <div className={styles.searchControls}>
-          <SearchBar
-            placeholder="食材名を入力"
-            buttonText="食材を追加"
-            onSearch={handleSearch}
-            showSiteSelector={true}
-          />
-        </div>
-      </SearchForm>
-    </div>
+                  {!preview ? (
+                      <label htmlFor="food-image" className={styles.uploadLabel}>
+                        <div className={styles.uploadIcon}>
+                          <Upload size={32} />
+                        </div>
+                        <h3>具材の写真をアップロード</h3>
+                        <p>クリックまたはドラッグ&ドロップで画像を選択</p>
+                      </label>
+                  ) : (
+                      <div className={styles.previewContainer}>
+                        <img src={preview || "/placeholder.svg"} alt="画像のプレビュー" className={styles.imagePreview} />
+
+                        {!isAnalyzing ? (
+                            <button className={styles.analyzeButton} onClick={analyzeImage} disabled={isAnalyzing}>
+                              <Check size={20} />
+                              分析開始
+                            </button>
+                        ) : (
+                            <div className={styles.analyzing}>
+                              <Loader2 size={24} className={styles.spinner} />
+                              <p>AIが画像を分析中...</p>
+                            </div>
+                        )}
+                      </div>
+                  )}
+                </div>
+              </div>
+            </div>
+        ) : (
+
+              <button
+                  className={styles.resetButton}
+                  onClick={() => {
+                    setFile(null)
+                    setPreview(null)
+                    setAnalysisComplete(false)
+                  }}
+              >
+                別の画像で検索
+              </button>
+        )}
+      </div>
   )
 }
 

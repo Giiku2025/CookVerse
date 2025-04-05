@@ -10,7 +10,7 @@ export const Sites: Site[] = [
     { id: "delish", name: "DELISH KITCHEN", url: "https://www.delishkitchen.tv/search?q=" },
 ]
 export const useSearchSite = () => {
-    const [selectedSiteId, setSelectedSiteId] = useState("cookpad")
+    const [selectedSiteId, setSelectedSiteId] = useState(Sites[0].id)
     const [query, setQuery] = useState("")
     const handleSiteChange = (siteId: string) => {
         setSelectedSiteId(siteId)
@@ -28,6 +28,7 @@ export const useSearchSite = () => {
 
     return {
         selectedSiteId,
+        setSelectedSiteId,
         query,
         handleSiteChange,
         handleQueryChange,

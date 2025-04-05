@@ -17,7 +17,7 @@ function Header() {
       <div className={styles.container}>
         <div className={styles.logoContainer}>
           <Link to="/" className={styles.logo}>
-            <h1>NutriTrack</h1>
+            <h1>CookVerse</h1>
           </Link>
 
           <button
