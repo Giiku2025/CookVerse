@@ -3,24 +3,31 @@ import { useState } from "react"
 import { Upload, Check, Loader2 } from "lucide-react"
 import styles from "../calculator/calculatorPage.module.css"
 import { GetRecognize} from "../../api/analyze.ts";
+import SearchBar from "../../components/search/SearchBar/SearchBar.tsx";
+import {useSearchSite} from "../../hooks/search/useSearchSite.tsx";
 
 function IngredientsPage() {
   const [file, setFile] = useState<File | null>(null)
   const [preview, setPreview] = useState<string | null>(null)
   const [isAnalyzing, setIsAnalyzing] = useState(false)
   const [analysisComplete, setAnalysisComplete] = useState(false)
+  const {handleQueryChange ,query} = useSearchSite()
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileChange
+      = (e: React.ChangeEvent<HTMLInputElement>) => {
+
     if (e.target.files && e.target.files[0]) {
       const selectedFile = e.target.files[0]
       setFile(selectedFile)
 
       const reader = new FileReader()
-      reader.onload = (event) => {
+      reader.onload = async (event) => {
         if (event.target?.result) {
-          const base64Image = event.target.result as string
-          setPreview(base64Image)
-          GetRecognize(base64Image)
+          const base64Image = (event.target.result as string).replace(/^data:image\/webp;base64,/, "")
+          setPreview(event.target.result as string)
+          const response = await GetRecognize(base64Image)
+          const foods = response.foods.map((food: { name: string }) => food.name).join(", ")
+          handleQueryChange(foods)
         }
       }
       reader.readAsDataURL(selectedFile)
@@ -88,17 +95,26 @@ function IngredientsPage() {
               </div>
             </div>
         ) : (
+            <>
 
+              <SearchBar
+                placeholder="具材を検索"
+                buttonText="検索"
+                className={styles.searchBar}
+                QueryDefaultValue={query as string}
+              />
               <button
-                  className={styles.resetButton}
-                  onClick={() => {
-                    setFile(null)
-                    setPreview(null)
-                    setAnalysisComplete(false)
-                  }}
-              >
-                別の画像で検索
-              </button>
+      className={styles.resetButton}
+      onClick={() => {
+        setFile(null)
+        setPreview(null)
+        setAnalysisComplete(false)
+      }}
+  >
+    別の画像で検索
+   </button>
+</>
+
         )}
       </div>
   )

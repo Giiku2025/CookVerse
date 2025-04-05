@@ -1,15 +1,15 @@
-import type React from "react"
+import React, {useEffect} from "react"
 
 import { Search } from "lucide-react"
 import styles from "./searchBar.module.css"
 import { Button, Input } from "react-aria-components"
 import { useSearchSite } from "../../../hooks/search/useSearchSite.tsx"
-import SiteSelector from "../SiteSelector/SiteSelector.tsx"
 
 export interface SearchBarProps {
     placeholder?: string
     buttonText?: string
     className?: string
+    QueryDefaultValue?: string
     onSearch?: (query: string, siteId: string) => void
 }
 
@@ -17,9 +17,15 @@ function SearchBar({
                        placeholder = "キーワードを入力",
                        buttonText = "検索",
                        className = "",
+                       QueryDefaultValue = "",
                        onSearch,
                    }: SearchBarProps) {
     const { query, handleQueryChange, getSiteUrl, selectedSiteId } = useSearchSite()
+
+    // 初期値を設定
+    useEffect(() => {
+        handleQueryChange(QueryDefaultValue)
+    }, [QueryDefaultValue, handleQueryChange])
 
     const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
         if (event.key === "Enter") {
