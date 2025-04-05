@@ -9,7 +9,6 @@ import SiteSelector from "../SiteSelector/SiteSelector.tsx"
 export interface SearchBarProps {
     placeholder?: string
     buttonText?: string
-    showSiteSelector?: boolean
     className?: string
     onSearch?: (query: string, siteId: string) => void
 }
@@ -17,7 +16,6 @@ export interface SearchBarProps {
 function SearchBar({
     placeholder = "キーワードを入力",
     buttonText = "検索",
-    showSiteSelector = true,
     className = "",
     onSearch,
 }: SearchBarProps) {
@@ -62,7 +60,7 @@ function SearchBar({
                     onChange={(e) => handleQueryChange(e.target.value)}
                     onKeyDown={handleKeyDown}
                 />
-                {showSiteSelector && <SiteSelector />}
+                <SiteSelector />
 
                 <Button
                     className={styles.searchButton}

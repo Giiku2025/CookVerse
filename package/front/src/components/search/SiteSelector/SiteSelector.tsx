@@ -1,4 +1,3 @@
-import { useState } from "react"
 import styles from "./siteSelector.module.css"
 import { Button, ListBox, ListBoxItem, Popover, Select, SelectValue } from "react-aria-components";
 import { Sites, useSearchSite } from "../../../hooks/search/useSearchSite.tsx";
@@ -6,14 +5,9 @@ import { Sites, useSearchSite } from "../../../hooks/search/useSearchSite.tsx";
 
 
 function SiteSelector() {
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false)
-  const { handleSiteChange, selectedSiteId } = useSearchSite()
-  const toggleDropdown = () => {
-    setIsDropdownOpen(!isDropdownOpen)
-  }
+  const {selectedSiteId, setSelectedSiteId,} = useSearchSite()
 
-  // 選択されたサイトを取得
-  const selectedSite = Sites.find(site => site.id === selectedSiteId);
+
 
   return (
     <div className={`${styles.siteSelector}`}>
@@ -23,16 +17,19 @@ function SiteSelector() {
       >
         <Button className={styles.siteSelectorButton}>
           <SelectValue>
-            {selectedSite ? selectedSite.name : "サイトを選択"}
+              {Sites[
+            Sites.findIndex((site) => site.id === selectedSiteId)
+                  ].name}
           </SelectValue>
         </Button>
         <Popover>
           <ListBox
             className={styles.dropdown}
-            onSelectionChange={(selectedKey) => {
-              handleSiteChange(selectedKey as string);
-              toggleDropdown();
-            }}
+            selectedKeys={selectedSiteId}
+            onSelectionChange={
+                (key) => {
+                    setSelectedSiteId(key as string)
+                }}
           >
             {Sites.map((site) => (
               <ListBoxItem
