@@ -1,0 +1,9 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "giiku-2025-vol2",
+  "main": "src/index.ts",
+  "compatibility_date": "2025-04-04",
+  "vars": {
+    "GEMINI_API_KEY": ""
+  }
+}
