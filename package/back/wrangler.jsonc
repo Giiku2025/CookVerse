@@ -4,12 +4,6 @@
   "main": "src/index.ts",
   "compatibility_date": "2025-04-04",
   "vars": {
-    "GEMINI_API_KEY": "AIzaSyAxbrLhTuxobK0RB5IltHEcul_0zP2Mu2I"
-  },
-  "kv_namespaces": [
-    {
-      "binding": "RATE_LIMIT_KV",
-      "id": "<KV_ID>"
-    }
-  ]
+    "GEMINI_API_KEY": ""
+  }
 }
