@@ -1,0 +1,9 @@
+version: "3"
+
+tasks:
+  init:
+    desc: "Prompt for GEMINI_API_KEY and create .dev.vars file"
+    cmds:
+      - |
+        read -p "Enter GEMINI_API_KEY: " api_key
+        echo "GEMINI_API_KEY=${api_key}" > .dev.vars
