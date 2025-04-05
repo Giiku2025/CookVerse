@@ -31,13 +31,7 @@ function HomePage() {
           <p>様々な健康的なレシピを検索して、栄養バランスの良い食事を見つけましょう。</p>
         </Link>
 
-        <Link to="/ingredients" className={styles.featureCard}>
-          <div className={styles.featureIcon}>
-            <Apple size={32} />
-          </div>
-          <h3>具材からレシピを検索</h3>
-          <p>冷蔵庫にある食材から作れるレシピを検索できます。</p>
-        </Link>
+
 
         <Link to="/calculator" className={styles.featureCard}>
           <div className={styles.featureIcon}>
