@@ -2,6 +2,7 @@ import type React from "react"
 import { useState } from "react"
 import { Upload, Check, Loader2 } from "lucide-react"
 import styles from "../calculator/calculatorPage.module.css"
+import { GetRecognize} from "../../api/analyze.ts";
 
 function IngredientsPage() {
   const [file, setFile] = useState<File | null>(null)
@@ -17,7 +18,9 @@ function IngredientsPage() {
       const reader = new FileReader()
       reader.onload = (event) => {
         if (event.target?.result) {
-          setPreview(event.target.result as string)
+          const base64Image = event.target.result as string
+          setPreview(base64Image)
+          GetRecognize(base64Image)
         }
       }
       reader.readAsDataURL(selectedFile)

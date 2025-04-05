@@ -1,4 +1,4 @@
-export const getRecognize = async (image:string)  => {
+export const GetRecognize = async (image:string)  => {
     const body = new FormData()
     body.append("image", image)
     try {
@@ -23,6 +23,7 @@ export const GetAnalyze = async (
                 method: "POST",
                 body: body,
             })
+        console.log(data.json())
         return data.json()
     } catch (error) {
         console.error("画像の分析に失敗しました:", error)
