@@ -1,6 +1,5 @@
 .heroSection {
-  background: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.3)),
-    url("/placeholder.svg?height=600&width=1200");
+  background: url('../../../public/top-bg.png') no-repeat center center;
   background-size: cover;
   background-position: center;
   border-radius: 20px;

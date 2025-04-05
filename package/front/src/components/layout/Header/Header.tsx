@@ -1,4 +1,3 @@
-"use client"
 
 import { useState } from "react"
 import { Link } from "react-router-dom"
@@ -36,11 +35,11 @@ function Header() {
           </Link>
           <Link to="/search" className={styles.navLink} onClick={() => setMobileMenuOpen(false)}>
             <Search size={20} />
-            <span>レシピを検索</span>
+            <span className={styles.navTxt}>レシピを検索</span>
           </Link>
           <Link to="/ingredients" className={styles.navLink} onClick={() => setMobileMenuOpen(false)}>
             <Apple size={20} />
-            <span>具材から検索</span>
+            <span className={styles.navTxt}>具材から検索</span>
           </Link>
           <Link to="/calculator" className={styles.navLink} onClick={() => setMobileMenuOpen(false)}>
             <Calculator size={20} />
