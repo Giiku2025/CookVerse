@@ -12,11 +12,8 @@ import { GeminiNutritionRepository } from "./infrastructure/repositories/gemini-
 import { NutritionController } from "./presentation/controllers/nutrition-controller";
 
 import { createRoutes } from "./presentation/routes";
-
-// 環境変数の型定義
-interface Environment {
-  GEMINI_API_KEY: string;
-}
+import { rateLimitMiddleware } from "./presentation/middleware/rate-limit-middleware";
+import { Environment } from "./config/environment";
 
 export default {
   async fetch(
@@ -28,7 +25,34 @@ export default {
 
     // ミドルウェアの設定
     app.use("*", logger());
-    app.use("*", cors());
+    app.use(
+      "*",
+      cors({
+        origin: "https://cook-verse-three.vercel.app/",
+        allowMethods: ["POST"],
+        exposeHeaders: [
+          "X-RateLimit-Limit",
+          "X-RateLimit-Remaining",
+          "X-RateLimit-Reset",
+        ],
+        maxAge: 86400,
+      })
+    );
+
+    // レート制限ミドルウェアの追加
+    // APIエンドポイントに対してのみレート制限を適用
+    app.use(
+      "/api/*",
+      rateLimitMiddleware({
+        limit: 100, // 1時間に50リクエストまで
+        windowMs: 60 * 60 * 1000,
+        statusCode: 429,
+        kvNamespace: env.RATE_LIMIT_KV,
+        keyPrefix: "rate-limit:",
+        message:
+          "リクエスト数の制限を超えました。しばらくしてからお試しください。",
+      })
+    );
 
     // リポジトリの初期化
     const foodRecognitionRepository = new GeminiFoodRecognitionRepository(
