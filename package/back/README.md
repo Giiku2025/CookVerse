@@ -54,10 +54,6 @@ src/
 ### インストール
 
 ```bash
-# リポジトリをクローン
-git clone https://github.com/yourusername/food-recognition-api.git
-cd food-recognition-api
-
 # 依存関係のインストール
 pnpm install
 ```
