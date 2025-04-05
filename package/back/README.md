@@ -22,6 +22,7 @@
 - **TypeScript**: 静的型付けによる開発
 - **Zod**: バリデーションライブラリ
 - **pnpm**: パッケージマネージャー
+- **Taskfile**: タスク自動化ツール
 
 ## アーキテクチャ
 
@@ -50,6 +51,7 @@ src/
 - pnpm
 - Cloudflare Workers アカウント
 - Gemini API Key
+- [Task](https://taskfile.dev/)（オプション: 便利なセットアップ用）
 
 ### インストール
 
@@ -58,20 +60,23 @@ src/
 pnpm install
 ```
 
-### 環境変数の設定
+### Gemini API Key の設定
 
-`wrangler.toml`ファイルを編集して、必要な環境変数を設定します：
+#### 方法 1: Taskfile を使用する場合（推奨）
 
-```toml
-name = "food-recognition-api"
-main = "dist/index.js"
-compatibility_date = "2025-04-04"
+```bash
+# タスクを実行してAPIキーを設定
+task init
+# プロンプトが表示されるので、Gemini API Keyを入力してください
+```
 
-[build]
-command = "pnpm run build"
+このコマンドは`.dev.vars`ファイルを作成し、ローカル開発環境でのみ使用される環境変数を設定します。このファイルは`.gitignore`に登録されているため、誤ってリポジトリにコミットされることはありません。
 
-[vars]
-GEMINI_API_KEY = "YOUR_GEMINI_API_KEY"
+#### 方法 2: 手動で設定する場合
+
+```bash
+# .dev.varsファイルを手動で作成
+echo "GEMINI_API_KEY=YOUR_GEMINI_API_KEY" > .dev.vars
 ```
 
 ### 開発サーバーの起動
@@ -81,6 +86,16 @@ pnpm run dev
 ```
 
 ### デプロイ
+
+デプロイ前に、Cloudflare Workers にシークレットを設定します：
+
+```bash
+# シークレットの設定
+wrangler secret put GEMINI_API_KEY
+# プロンプトが表示されるので、Gemini API Keyを入力してください
+```
+
+その後、デプロイを実行：
 
 ```bash
 pnpm run deploy
