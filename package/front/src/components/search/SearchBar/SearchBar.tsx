@@ -14,11 +14,11 @@ export interface SearchBarProps {
 }
 
 function SearchBar({
-    placeholder = "キーワードを入力",
-    buttonText = "検索",
-    className = "",
-    onSearch,
-}: SearchBarProps) {
+                       placeholder = "キーワードを入力",
+                       buttonText = "検索",
+                       className = "",
+                       onSearch,
+                   }: SearchBarProps) {
     const { query, handleQueryChange, getSiteUrl, selectedSiteId } = useSearchSite()
 
     const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
@@ -52,6 +52,7 @@ function SearchBar({
     return (
         <div className={`${styles.searchInputContainer} ${className}`}>
             <form className={styles.searchInputWrapper} onSubmit={(e) => e.preventDefault()}>
+                {/*<SiteSelector />*/}
                 <Input
                     type="text"
                     placeholder={placeholder}
@@ -60,7 +61,6 @@ function SearchBar({
                     onChange={(e) => handleQueryChange(e.target.value)}
                     onKeyDown={handleKeyDown}
                 />
-                <SiteSelector />
 
                 <Button
                     className={styles.searchButton}
