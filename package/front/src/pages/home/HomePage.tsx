@@ -5,7 +5,6 @@ import styles from "./homePage.module.css"
 function HomePage() {
   return (
     <div>
-      <h1 className="page-title">CookVerse</h1>
 
       <div className={styles.heroSection}/>
 
