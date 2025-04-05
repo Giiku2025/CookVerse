@@ -1,4 +1,3 @@
-"use client"
 
 import { useState } from "react"
 import { Link } from "react-router-dom"
@@ -16,10 +15,6 @@ function Header() {
     <header className={styles.header}>
       <div className={styles.container}>
         <div className={styles.logoContainer}>
-          <Link to="/" className={styles.logo}>
-            <h1>CookVerse</h1>
-          </Link>
-
           <button
             className={styles.mobileMenuButton}
             onClick={toggleMobileMenu}

@@ -7,14 +7,7 @@ function HomePage() {
     <div>
       <h1 className="page-title">CookVerse</h1>
 
-      <div className={styles.heroSection}>
-        <div className={styles.heroContent}>
-          <h2>
-    VRで新しい料理体験を
-          </h2>
-            <p>VRを通じて、料理の楽しさと健康的な食生活を実現しましょう。</p>
-        </div>
-      </div>
+      <div className={styles.heroSection}/>
 
       <div className={styles.featuresGrid}>
         <Link to="/search" className={styles.featureCard}>
