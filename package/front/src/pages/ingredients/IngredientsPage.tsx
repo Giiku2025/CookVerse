@@ -26,8 +26,8 @@ function IngredientsPage() {
           const base64Image = (event.target.result as string).replace(/^data:image\/webp;base64,/, "")
           setPreview(event.target.result as string)
           const response = await GetRecognize(base64Image)
-          console.log(response)
-          handleQueryChange(response)
+          const foods = response.foods.map((food: { name: string }) => food.name).join(", ")
+          handleQueryChange(foods)
         }
       }
       reader.readAsDataURL(selectedFile)
