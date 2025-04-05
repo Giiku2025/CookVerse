@@ -1,8 +1,11 @@
+//eslint-disable-next-line
+// @ts-ignore
+const API_URL = import.meta.env.VITE_API_URL
 export const GetRecognize = async (image:string)  => {
     const body = new FormData()
     body.append("image", image)
     try {
-        const data = await fetch(`http://localhost:8787/api/food/recognize`,
+        const data = await fetch(`${API_URL}/api/food/recognize`,
             {
                 method: "POST",
                 body: body,
@@ -18,7 +21,7 @@ export const GetAnalyze = async (
     const body = new FormData()
     body.append("image", image)
     try {
-        const data = await fetch(`http://localhost:8787/api/nutrition/analyze`,
+        const data = await fetch(`${API_URL}/api/nutrition/analyze`,
             {
                 method: "POST",
                 body: body,
