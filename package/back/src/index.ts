@@ -28,8 +28,8 @@ export default {
     app.use(
       "*",
       cors({
-        origin: "https://cook-verse-three.vercel.app/",
-        allowMethods: ["POST"],
+        origin: "https://cook-verse-three.vercel.app",
+        allowMethods: ["POST", "OPTIONS"],
         exposeHeaders: [
           "X-RateLimit-Limit",
           "X-RateLimit-Remaining",
