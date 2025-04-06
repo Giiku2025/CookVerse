@@ -34,6 +34,7 @@ export default {
           "X-RateLimit-Limit",
           "X-RateLimit-Remaining",
           "X-RateLimit-Reset",
+          "Access-Control-Allow-Origin",
         ],
         maxAge: 86400,
       })
