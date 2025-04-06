@@ -5,5 +5,11 @@
   "compatibility_date": "2025-04-04",
   "vars": {
     "GEMINI_API_KEY": ""
-  }
+  },
+  "kv_namespaces": [
+    {
+      "binding": "RATE_LIMIT_KV",
+      "id": "14ae8cd9e0f241bab95a5f5750dbab0c"
+    }
+  ]
 }
